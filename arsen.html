@@ -1,12 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Prove</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>versioni 1 i dokumentit</h1>
-    
-</body>
+
+    <script>
+      //objects
+      const arsen = {
+        firstName: "arsen",
+        lastName: "cenollari",
+        birthYear: 2001,
+        job: "junior programmer",
+        friends: ["fr1", "fr2", "fr3"],
+        patent: true,
+
+        llogaritMoshen: function () {
+          return 2023 - this.birthYear;
+        },
+
+        getSummary: function () {
+          return `${
+            this.firstName
+          } eshte ${this.llogaritMoshen()} vjec dhe punon si ${
+            this.job
+          } dhe ai e ka patenten ${this.patent ? "yes" : "no"}`;
+        },
+      };
+      console.log(arsen.getSummary());
+      console.log(arsen.firstName);
+      console.log(arsen.lastName);
+      console.log("printim array");
+
+      // const interestedIn = prompt('per cfare jeni te intersuar zgjidh rreth firstName, lastName, age ,job')
+      // if (interestedIn === 'job'){
+      //     console.log(arsen.job)
+
+      // }else if(interestedIn==='firstName'){
+      //     console.log(arsen.firstName)
+
+      // }
+
+      console.log(arsen.llogaritMoshen());
+
+      console.log(
+        "-----------------------------CODE CHALLENGE NR 3 OBJECTS---------------------"
+      );
+      let mark = {
+        fullName: "Mark Miller",
+        mass: 78,
+        height: 1.7,
+
+        calcBMI: function () {
+          return (this.mass / this.height) * this.height;
+        },
+      };
+
+      let jhon = {
+        fullName: "Jhon Smith",
+        mass: 89,
+        height: 1.87,
+
+        calcBMI: function () {
+          this.bmi = (this.mass / this.height) * this.height;
+          return this.bmi;
+        },
+      };
+
+      let marksBMI = mark.calcBMI();
+      console.log(marksBMI);
+      let jhonsBMI = jhon.calcBMI();
+      console.log(jhonsBMI);
+      if (marksBMI > jhonsBMI) {
+        console.log(
+          `marku ka nje bmi: ${marksBMI} me te madhe se jhoni me bmi: ${jhonsBMI}`
+        );
+      } else {
+        console.log(
+          `jhoni ka nje bmi: ${jhonsBMI} me te madhe se marku me nje bmi: ${marksBMI}`
+        );
+      }
+
+      const types = [];
+      const arsen2 = ["arsen", "cenollari", 21, ["fr1", "fr2", "fr3", "fr4"]];
+
+      for (let i = 0; i < arsen2.length; i++) {
+        console.log(arsen2[i], typeof arsen2[i]);
+        types[i] = typeof arsen2[i];
+      }
+      console.log(types);
+      const mbush = [];
+      mbush.push(arsen2);
+      console.log(mbush);
+      for (let i = 0; i <= arsen2.length; i++) {
+        if (typeof arsen2[i] !== "string") continue;
+        console.log(arsen2[i], typeof arsen2[i]);
+      }
+
+      //     let dice = Math.trunc(Math.random()*6);
+
+      //     while(dice !== 6){
+      //         console.log(`you rolled a ${dice}`);
+      //         let dice = Math.floor(Math.random()*6);
+      //     if(dice === 6){
+      //         console.log(`the loop is about to end`);
+      //     }
+      // }
+      const calcTip = function (bill) {
+        return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+      };
+
+      let bills = [22, 295, 176, 440, 37, 101, 10, 1100, 86, 52];
+      let tips = [];
+      let totals = [];
+      for (let i = 0; i <= bills.length; i++) {
+        tips.push(calcTip(bills[i]));
+        totals.push(tips[i] + bills[i]);
+      }
+      console.log(bills, tips, totals);
+
+      function mesatarajArray(arr) {
+        let sum = 0;
+        for (let i = 0; i < arr.length; i++) {
+          sum = sum + arr[i];
+        }
+        console.log(sum);
+        return sum / arr.length;
+      }
+      console.log(mesatarajArray(bills));
+
+      // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- USHTRIM ME SCOPES
+      console.log(
+        "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=SCOPES =-=-=-=-=-=-=-=-=-=-=-=-=-"
+      );
+      function calcAge(birthYear) {
+        //function scope
+        const age = 2023 - birthYear;
+        function printAge() {
+          let output = `you are ${age}, born in  ${birthYear}`;
+          console.log(output);
+
+          if (birthYear >= 1981 && birthYear <= 2002) {
+            var millenium = true;
+            const string = `you are a millenium  ${firstName2}`;
+            console.log(string);
+            output = `new`;
+            console.log(output);
+          }
+          console.log(millenium);
+        }
+        printAge();
+
+        return age;
+      }
+      // global scope
+      firstName2 = "arsen";
+      calcAge(2001);
+      // console.log(calcAge(2001));
+
+      console.log(`=-=-=-=-HOISITNG =-=-=-=-=-`);
+      //=-=-=-=-=-=-=-
+      console.log(funksjoni(4, 5));
+      // console.log(vler(4,5));
+      // console.log(arrowvler(4,5));
+
+      function funksjoni(a, b) {
+        return a + b;
+      }
+      // }
+      // const vler = function (a, b){
+      //     return a + b;
+      // }
+      // const arrowvler = (a,b) => a+b;
+
+      //=-=-=-=-=-=-
+      let numri = 10;
+
+      if (numri) deletefunction();
+      function deletefunction() {
+        console.log("all the products are deleted");
+      }
+    </script>
+  </body>
 </html>
