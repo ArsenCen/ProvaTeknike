@@ -183,6 +183,24 @@
       function deletefunction() {
         console.log("all the products are deleted");
       }
+
+      console.log("=-=-=-=-=-=- PRIMITIVES VS OBJECTS -=-=-=-=-=-=-=-=-=-=-");
+      let lastName = "cenollari";
+      let oldLastName = lastName;
+      lastName = "cenollari2";
+      console.log(lastName, oldLastName); // te dy mbiemrat versioni 1 dhe 2 do te jene te ndryshem
+
+      let personArsen = {
+        emri: "arsen",
+        mbiemri: "cenollari",
+        mosha: 21,
+      };
+
+      let person2Arsen = personArsen;
+      person2Arsen.mosha = 22;
+      console.log("personi i pare:", personArsen);
+      console.log("personi i pare:", person2Arsen); // update qe do te bejme per moshen e personit te dyte do te na sjelli dhe ndryshimin e moshes se personit te
+      //pare (rikujto skemen CALL STOCK dhe HEAP)
     </script>
   </body>
 </html>
