@@ -201,6 +201,209 @@
       console.log("personi i pare:", personArsen);
       console.log("personi i pare:", person2Arsen); // update qe do te bejme per moshen e personit te dyte do te na sjelli dhe ndryshimin e moshes se personit te
       //pare (rikujto skemen CALL STOCK dhe HEAP)
+
+      let restorant = {
+        emri: "restoranti",
+        location: "adresa e restorantit",
+        categories: ["italian", "pizzeria", "vegetarian", "organic"],
+        starterMenu: ["focaccia", "bruschetta", "garlic"],
+        mainMenu: ["pizza", "pasta", "risotto", "gelatto"],
+
+        openingHours: {
+          thu: {
+            open: 12,
+            close: 22,
+          },
+          fri: {
+            open: 11,
+            close: 13,
+          },
+          sat: {
+            open: 0,
+            close: 24,
+          },
+        },
+
+        order: function (firstIndex, secondIndex) {
+          return [this.starterMenu[firstIndex], this.mainMenu[secondIndex]];
+        },
+
+        deliveryOrder: function (starterIndex, mainIndex, time, address) {
+          console.log(`porosia me adres: ${address}, eshte rregjistruar ne oren: ${time} dhe ajo permban: ${this.starterMenu[starterIndex]} dhe 
+            ${this.mainMenu[mainIndex]}`);
+        },
+
+        orderinput: function (ing1, ing2, ing3) {
+          const afishim = `ushqimi qe ju do te porosisni do te permbaje keto ingrediente: ${ing1} ${ing2} ${ing3} `;
+          console.log(afishim);
+        },
+
+        orderPizza: function (ingredientiKryesor, ...ingredientTeTjere) {
+          console.log(ingredientiKryesor);
+          console.log(ingredientTeTjere);
+        },
+      };
+
+      restorant.deliveryOrder({
+        time: "01:23",
+        address: "rruga kavajes",
+        mainIndex: 2,
+        starterIndex: 2,
+      });
+
+      // const menutotal =
+      //   [...restorant.mainMenu] + " " + [...restorant.starterMenu];
+      // console.log("MENUJA TOTALE E RESTORANTIT DO TE JETE: " + menutotal);
+
+      const { emri, categories, openingHours } = restorant;
+      console.log(emri, categories, openingHours);
+
+      let [first, second] = restorant.categories; // nese do te benim let [first, ,second] elementi i dyte ne arrayn e objektit do te behej skip
+      [first, second] = [second, first]; // ndrrimi i elementeve te nje array
+      console.log([first, second]);
+      console.log(restorant.order(2, 0)); //elementin me index 2 te vektorit starterMenu dhe elementin 0 te mainMenu
+      //i bejme rezultatet vektor
+      const [rez1, rez2] = restorant.order(2, 0);
+      console.log([rez1, rez2]);
+
+      //nested array dhe destructing inside destructing
+      const nested = [3, 4, [5, 6]];
+      const [i, , [j, k]] = nested;
+      console.log(i, j, k);
+
+      //spread
+      const str = "ArsenCenollari";
+      const shkronja = [...str];
+      console.log(shkronja);
+
+      // krijon nje vektor me inputet qe ne japim per cdoo pyetje qe ne na shfaqet per ingredientet
+      const ingredientet = [
+        //     prompt("vendos ingredientin e pare"),
+        //     prompt("vendos ingredientin e dyte"),
+        //     prompt("vendos ingredientin e fundit"),
+      ];
+      console.log(ingredientet);
+      restorant.orderinput(...ingredientet);
+
+      console.log("=-=-=-=-=-=-=-=-=-=-=-=-=-REST PATTERNS AND PARAMETERS");
+      const arr = [1, 2, ...[3, 4]];
+      console.log(arr);
+      const [a, b, ...other] = [1, 2, 3, 4, 5, 6];
+      console.log(a, b, other);
+
+      //   const arrBashkim = [...restorant.starterMenu, ...restorant.mainMenu]
+      //   console.log(arrBashkim);
+      const [pizza, , risotto, ...otherfood] = [
+        ...restorant.mainMenu,
+        ...restorant.starterMenu,
+      ];
+      console.log(pizza, risotto, otherfood);
+
+      // OBJECTS
+      const { thu, ...weekdays } = restorant.openingHours;
+      console.log(weekdays);
+
+      //=------------------------------=-=FUNCTIONS-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+      const add = function (...numbers) {
+        let sum = 0;
+        for (let i = 0; i < numbers.length; i++) {
+          sum += numbers[i];
+        }
+        console.log(sum);
+      };
+      add(1, 2, 3, 4);
+      add(1, 2, 3, 4, 5, 6, 7, 8);
+      const x = [1, 2, 3, 4, 5, 6, 10];
+      add(...x);
+
+      //tek objekti restorat do te therrasim metoden porositpica
+      restorant.orderPizza("salami", "onion", "olives", "tomatoes"); // argumentat qe do te futen tek ...ingredient te tjere do te shfaqen si array
+      restorant.orderPizza("mushrooms"); // vetem mushrooms do te shfaqet si ingredient kryesor
+
+      const guestRestorant = restorant.numOfGuesst ? restorant.numOfGuesst : 10;
+      console.log(guestRestorant);
+
+      restorant.numGuest = 0;
+      const numriIteFtuarve = restorant.numGuest ?? 10;
+      console.log(numriIteFtuarve);
+
+      console.log(
+        "=-=-=-=-=-=-=-=-DATA STRUCTURES CHALLENGE =-=-=-=-=-=-=-=-=-=-=-=-"
+      );
+      //objekti loja
+      const game = {
+        team1: "Bayern Munich",
+        team2: "Borrussia Dortmund",
+        players: [
+          [
+            "Neuer",
+            "Pavard",
+            "Martinez",
+            "Alaba",
+            "Davies",
+            "Kimmich",
+            "Goretzka",
+            "Coman",
+            "Muller",
+            "Gnarby",
+            "Lewandowski",
+          ],
+          [
+            "Burki",
+            "Schulz",
+            "Hummels",
+            "Akanji",
+            "Hakimi",
+            "Weigl",
+            "Witsel",
+            "Hazard",
+            "Brandt",
+            "Sancho",
+            "Gotze",
+          ],
+        ],
+        score: "4:0",
+        scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+        date: "Nov 9th, 2037",
+        odds: {
+          team1: 1.33,
+          x: 3.25,
+          team2: 6.5,
+        },
+      };
+      //krijo nje array player per cdo skuader
+      const [players1, players2] = game.players;
+      console.log(players1, players2);
+
+      const [gk, ...fieldPlayers] = players1;
+      console.log(gk, fieldPlayers);
+      // krijo nje array qe te permbaj te gjithe lojtaret e te dyja skuadrave total 22 lojtare
+      const players1Final = [...players1, "Thiago", "Coutinho", "Perisic"];
+      console.log(players1Final);
+
+      const {
+        odds: { team1, x: draw, team2 },
+      } = game;
+      console.log(team1, draw, team2);
+      const printGoals = function (...players) {
+        console.log(`${players.length} goals are scored`);
+      };
+      printGoals("Davies", "Muller", "Lewandowski", "Kimmich");
+      if (team1 > team2) {
+        console.log("shancet jane ne favor te skuadres 2");
+      } else {
+        console.log("shancet jane ne favor te skuadres 1");
+      }
+
+      const menutotal = [...restorant.starterMenu, ...restorant.mainMenu];
+      console.log(menutotal);
+      for (const element of menutotal.entries()) {
+        console.log(` ELEMENTI NUMER ${element[0] + 1}: ${element[1]}`);
+        // console.log(element);
+      }
+      for (const [kol1, kol2] of menutotal.entries()) {
+        console.log("Elementi me numer: " + (kol1 + 1) + " " + kol2);
+      }
     </script>
   </body>
 </html>
